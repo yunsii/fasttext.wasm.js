@@ -1,3 +1,5 @@
 pnpm-lock.yaml
 *.lock
 LICENSE
+src/core/fastText.*.js
+

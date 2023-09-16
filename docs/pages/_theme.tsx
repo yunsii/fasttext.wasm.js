@@ -11,21 +11,11 @@ const theme: Theme = (props) => {
   const { loadedData, loadState } = props
 
   const DocTheme = createTheme({
-    logo: <div style={{ fontSize: '20px' }}>pkg-name</div>,
+    logo: <div style={{ fontSize: '20px' }}>fasttext.wasm.js</div>,
     topNavs: [
       {
-        label: 'Components',
-        path: '/components',
-        activeIfMatch: '/components',
-      },
-      {
-        label: 'Hooks',
-        path: '/hooks',
-        activeIfMatch: '/hooks',
-      },
-      {
-        label: 'pkg-name',
-        href: 'https://github.com/yunsii/starter-vite-react-library',
+        label: 'fasttext.wasm.js',
+        href: 'https://github.com/yunsii/fasttext.wasm.js',
       },
     ],
     sideNavs: (ctx) => {
