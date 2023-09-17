@@ -4,6 +4,12 @@
 
 WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/) with compressed `lid.176.ftz` model (~900KB) and a typescript wrapper This project focuses on cross-platform, zero-dependency and out-of-the-box.
 
+## Features
+
+- Written in TypeScript
+- Browser, Node support
+- Language identification integrated
+
 ## Usage
 
 ```ts
@@ -38,6 +44,12 @@ await model.load()
 const result = await model.identify('Hello, world!')
 console.log(result) // 'en'
 ```
+
+## Benchmark
+
+> [codesandbox/language-detect-benchmark](https://codesandbox.io/p/sandbox/language-detect-benchmark-7fcwf4?file=/index.ts)
+
+- **10x Faster** and **very more accurate** than [languagedetect](https://github.com/FGRibreau/node-language-detect)
 
 ## Related
 
