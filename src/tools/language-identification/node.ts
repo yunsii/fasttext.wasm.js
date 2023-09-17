@@ -6,15 +6,15 @@ import type { FastTextModel } from '../../FastTextModel'
 const modeRelativePath = '../../models/lid.176.ftz'
 const defaultModelHref = new URL(modeRelativePath, import.meta.url).href
 
-export interface LanguageIdentifyModelOptions {
+export interface LanguageIdentificationModelOptions {
   modelHref?: string
 }
 
-export class LanguageIdentifyModel {
+export class LanguageIdentificationModel {
   modelHref: string
   model: FastTextModel | null = null
 
-  constructor(options: LanguageIdentifyModelOptions = {}) {
+  constructor(options: LanguageIdentificationModelOptions = {}) {
     const { modelHref = defaultModelHref } = options
     this.modelHref = modelHref
   }
@@ -34,14 +34,14 @@ export class LanguageIdentifyModel {
 
   async identify(text: string) {
     const vector = (await this.load()).predict(text, 1, 0.0)
-    return LanguageIdentifyModel.formatLang(vector.get(0)[1])
+    return LanguageIdentificationModel.formatLang(vector.get(0)[1])
   }
 
   async identifyVerbose(text: string) {
     const vector = (await this.load()).predict(text, 10, 0.0)
     return Array.from({ length: vector.size() }).map((_, index) => {
       return {
-        lang: LanguageIdentifyModel.formatLang(vector.get(index)[1]),
+        lang: LanguageIdentificationModel.formatLang(vector.get(index)[1]),
         possibility: vector.get(index)[0],
       } as IdentifyLangVector
     })

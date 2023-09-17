@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDebounceFn, useMount } from 'ahooks'
 
-import { LanguageIdentifyModel } from '../../src/main/browser'
+import { LanguageIdentificationModel } from '../../src/main/browser'
 import { initializeFastTextModule } from '../../src/helpers/models/browser'
 
 import type { DetectLang } from '../../src/tools/language-detect/types'
@@ -20,7 +20,7 @@ export default function Examples() {
   const handleDetect = useDebounceFn(async () => {
     setLoading(true)
     await initializeFastTextModule()
-    const model = new LanguageIdentifyModel({
+    const model = new LanguageIdentificationModel({
       modelHref: '/models/lid.176.ftz',
     })
     await model.load()

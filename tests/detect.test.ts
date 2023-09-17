@@ -4,7 +4,7 @@ import 'cross-fetch/polyfill'
 
 import {
   FastText,
-  LanguageIdentifyModel,
+  LanguageIdentificationModel,
   initializeFastTextModule,
 } from '../src/main/node'
 
@@ -37,7 +37,7 @@ describe('language detect', async () => {
     'В день уныния смирись': 'ru',
   }
   await initializeFastTextModule()
-  const model = new LanguageIdentifyModel()
+  const model = new LanguageIdentificationModel()
   await model.load()
   Object.keys(tests).forEach(async (item, index) => {
     test.concurrent(`language detect ${index}`, async () => {

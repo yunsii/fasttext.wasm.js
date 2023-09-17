@@ -15,13 +15,13 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 ```ts
 // Node
 import {
-  LanguageIdentifyModel,
+  LanguageIdentificationModel,
   initializeFastTextModule,
 } from 'fasttext.wasm.js'
 
 await initializeFastTextModule()
 // Use lid.176.ftz as default model
-const model = new LanguageIdentifyModel()
+const model = new LanguageIdentificationModel()
 await model.load()
 const result = await model.identify('Hello, world!')
 console.log(result) // 'en'
@@ -30,12 +30,12 @@ console.log(result) // 'en'
 ```ts
 // Browser
 import {
-  LanguageIdentifyModel,
+  LanguageIdentificationModel,
   initializeFastTextModule,
 } from 'fasttext.wasm.js/browser'
 
 await initializeFastTextModule()
-const model = new LanguageIdentifyModel({
+const model = new LanguageIdentificationModel({
   // Specific model path under public dir,
   // You can download it from https://fasttext.cc/docs/en/language-identification.html
   modelHref: '/models/lid.176.ftz',
