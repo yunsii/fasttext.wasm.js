@@ -58,7 +58,8 @@
     "prettier": "prettier --check --write --no-plugin-search \"**/*.(js|jsx|tsx|ts|css|less|scss|sass|md|yaml)\"",
     "test": "vitest --config vite.lib.config.ts",
     "test:ui": "vitest --config vite.lib.config.ts --ui",
-    "coverage": "vitest run --config vite.lib.config.ts --coverage"
+    "coverage": "vitest run --config vite.lib.config.ts --coverage",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.3",
