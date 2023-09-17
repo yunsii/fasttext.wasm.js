@@ -17,7 +17,7 @@ await initializeFastTextModule()
 // Use lid.176.ftz as default model
 const model = new LanguageIdentifyModel()
 await model.load()
-const result = model.identify('Hello, world!')
+const result = await model.identify('Hello, world!')
 console.log(result) // 'en'
 ```
 
@@ -35,9 +35,13 @@ const model = new LanguageIdentifyModel({
   modelHref: '/models/lid.176.ftz',
 })
 await model.load()
-const result = model.identify('Hello, world!')
+const result = await model.identify('Hello, world!')
 console.log(result) // 'en'
 ```
+
+## Related
+
+- [awesome-exhibition/fasttext.wasm.js](https://awesome-exhibition.vercel.app/awesome/fasttext.wasm.js) - Next.js example.
 
 ## Credits
 
