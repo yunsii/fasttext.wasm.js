@@ -7,7 +7,7 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 ## Usage
 
 ```ts
-// node
+// Node
 import {
   LanguageIdentifyModel,
   initializeFastTextModule,
@@ -22,7 +22,7 @@ console.log(result) // 'en'
 ```
 
 ```ts
-// browser
+// Browser
 import {
   LanguageIdentifyModel,
   initializeFastTextModule,
