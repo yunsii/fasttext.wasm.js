@@ -1,6 +1,6 @@
 import { FastText } from '../../FastText'
 
-import type { IdentifyLang } from './types'
+import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 
 const modeRelativePath = '../../models/lid.176.ftz'
@@ -43,7 +43,7 @@ export class LanguageIdentifyModel {
       return {
         lang: LanguageIdentifyModel.formatLang(vector.get(index)[1]),
         possibility: vector.get(index)[0],
-      }
+      } as IdentifyLangVector
     })
   }
 }

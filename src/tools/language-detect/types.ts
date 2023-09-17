@@ -176,3 +176,8 @@ export type IdentifyLang =
   | 'yo'
   | 'yue'
   | 'zh'
+
+export interface IdentifyLangVector {
+  lang: IdentifyLang
+  possibility: number
+}
