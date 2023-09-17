@@ -6,6 +6,7 @@
   },
   "changesets": [
     "clean-penguins-accept",
+    "rich-chefs-relate",
     "shiny-parents-develop"
   ]
 }

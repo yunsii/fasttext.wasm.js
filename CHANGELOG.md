@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.2
+
+### Patch Changes
+
+- 📦 refactor: rename to identification
+
 ## 0.0.1-next.1
 
 ### Patch Changes
