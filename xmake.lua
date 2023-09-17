@@ -20,7 +20,7 @@ add_ldflags("-sALLOW_MEMORY_GROWTH", "-sEXPORTED_FUNCTIONS=[_malloc,_free]",
     })
 
 -- If make target ENVIRONMENT=node, it will `import { createRequire } from 'module'`,
--- wiout specific ENVIRONMENT, use dynamic `import('module')` instead.
+-- without specific ENVIRONMENT, use dynamic `import('module')` instead.
 target("fastText.node")
 set_kind("binary")
 add_files("core/src/*.cc")
