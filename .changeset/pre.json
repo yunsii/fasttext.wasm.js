@@ -1,0 +1,8 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "fasttext.wasm.js": "0.0.0"
+  },
+  "changesets": ["clean-penguins-accept"]
+}
