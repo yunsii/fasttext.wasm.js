@@ -3,3 +3,5 @@ export { getFastTextModule } from '../helpers/models'
 export { FastText } from '../FastText'
 export { FastTextModel } from '../FastTextModel'
 export { LanguageIdentifyModel } from '../tools/language-detect/browser'
+
+export type { IdentifyLang } from '../tools/language-detect/types'

@@ -1,5 +1,5 @@
 /** https://fasttext.cc/blog/2017/10/02/blog-post.html#iso-codes-of-languages-supported */
-export type DetectLang =
+export type IdentifyLang =
   | 'af'
   | 'als'
   | 'am'

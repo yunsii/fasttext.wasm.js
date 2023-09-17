@@ -1,6 +1,6 @@
 import { FastText } from '../../FastText'
 
-import type { DetectLang } from './types'
+import type { IdentifyLang } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 
 const modeRelativePath = '../../models/lid.176.ftz'
@@ -29,7 +29,7 @@ export class LanguageIdentifyModel {
   }
 
   static formatLang(raw: string) {
-    return raw.replace('__label__', '') as DetectLang
+    return raw.replace('__label__', '') as IdentifyLang
   }
 
   async identify(text: string) {
