@@ -1,5 +1,7 @@
 import { FastText } from '../../FastText'
 
+import languages from './languages.json'
+
 import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 
@@ -45,5 +47,19 @@ export class LanguageIdentificationModel {
         possibility: vector.get(index)[0],
       } as IdentifyLangVector
     })
+  }
+
+  normalizeIdentifyLang(lang: IdentifyLang): {
+    /**
+     * Attentions:
+     *
+     * - `eml` is not standard ISO 639.2 and ISO 639.3 code
+     * - `bih` and `nah` are not standard ISO 639.3 code
+     */
+    alpha3Code: string
+    /** refName: manually normalize rawLanguage fit https://iso639-3.sil.org/code_tables/download_tables */
+    refName: string
+  } {
+    return languages[lang]
   }
 }

@@ -35,6 +35,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.6.2
     version: 18.6.2
+  '@types/papaparse':
+    specifier: ^5.3.8
+    version: 5.3.8
   '@types/react':
     specifier: ^18.0.15
     version: 18.0.15
@@ -80,6 +83,9 @@ devDependencies:
   lint-staged:
     specifier: ^13.2.3
     version: 13.2.3
+  papaparse:
+    specifier: ^5.4.1
+    version: 5.4.1
   postcss:
     specifier: ^8.4.28
     version: 8.4.28
@@ -1795,6 +1801,12 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/papaparse@5.3.8:
+    resolution: {integrity: sha512-ArKIEOOWULbhi53wkAiRy1ze4wvrTfhpAj7Yfzva+EkmX2sV8PpFB+xqzJfzXNzK4me95FJH9QZt5NXFVGzOoQ==}
+    dependencies:
+      '@types/node': 18.17.17
     dev: true
 
   /@types/prop-types@15.7.5:
@@ -6644,6 +6656,10 @@ packages:
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
+    dev: true
+
+  /papaparse@5.4.1:
+    resolution: {integrity: sha512-HipMsgJkZu8br23pW15uvo6sib6wne/4woLZPlFf3rpDyMe9ywEXUsuD7+6K9PRkJlVT51j/sCOYDKGGS3ZJrw==}
     dev: true
 
   /param-case@3.0.4:
