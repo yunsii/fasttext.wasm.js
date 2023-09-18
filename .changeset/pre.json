@@ -7,6 +7,7 @@
   "changesets": [
     "clean-penguins-accept",
     "rich-chefs-relate",
-    "shiny-parents-develop"
+    "shiny-parents-develop",
+    "stale-jeans-type"
   ]
 }

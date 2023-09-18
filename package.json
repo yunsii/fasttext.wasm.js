@@ -1,7 +1,7 @@
 {
   "name": "fasttext.wasm.js",
   "description": "",
-  "version": "0.0.1-next.2",
+  "version": "0.0.1-next.3",
   "author": "Yuns <yuns.xie@qq.com>",
   "license": "MIT",
   "type": "module",
