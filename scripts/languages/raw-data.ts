@@ -189,6 +189,7 @@ export const fixRefNameMap = {
 }
 
 export const fixAlpha3CodeMap = {
+  // ref: https://www.loc.gov/standards/iso639-2/php/English_list.php
   bh: 'bih',
 }
 

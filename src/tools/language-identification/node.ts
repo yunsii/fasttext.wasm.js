@@ -49,12 +49,22 @@ export class LanguageIdentificationModel {
     })
   }
 
+  /**
+   * fastText [language identification model](https://fasttext.cc/docs/en/language-identification.html)
+   * result is based on [List of Wikipedias](https://en.wikipedia.org/wiki/List_of_Wikipedias) `WP code`
+   *
+   * This lib provide a normalize method to transform `WP code` to ISO 639-3 as much as possible.
+   *
+   * More detail refer to [languages scripts](https://github.com/yunsii/fasttext.wasm.js/tree/master/scripts/languages).
+   */
   normalizeIdentifyLang(lang: IdentifyLang): {
     /**
+     * The three-letter 639-3 identifier.
+     *
      * Attentions:
      *
-     * - `eml` is not standard ISO 639.2 and ISO 639.3 code
-     * - `bih` and `nah` are not standard ISO 639.3 code
+     * - `eml` is not standard ISO 639-2 and ISO 639-3 code
+     * - `bih` and `nah` are ISO 639-2 codes, but not standard ISO 639-3 codes
      */
     alpha3Code: string
     /** refName: manually normalize rawLanguage fit https://iso639-3.sil.org/code_tables/download_tables */
