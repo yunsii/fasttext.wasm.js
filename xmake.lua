@@ -3,6 +3,7 @@ set_project("fastText")
 set_defaultplat("wasm")
 add_rules("mode.debug", "mode.release")
 
+-- non Node ENVIRONMENT binding js do not import "module"
 target("fastText.browser")
 set_kind("binary")
 add_files("core/src/*.cc")
