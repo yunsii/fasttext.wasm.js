@@ -10,3 +10,7 @@
 .markdown-body li {
   list-style: disc;
 }
+
+.markdown-body img {
+  display: inline-block;
+}
