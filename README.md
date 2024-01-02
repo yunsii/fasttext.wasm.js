@@ -69,6 +69,13 @@ console.log(result) // 'en'
 
 ## Build & Publish
 
+### Requirements
+
+- [emsdk](https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended)
+- [xmake](https://xmake.io/#/guide/installation)
+
+Pay attention, add `source ./emsdk_env.sh` to shell profile to auto load emsdk env, and `export EMSDK_QUIET=1` can be used to suppress these messages.
+
 - `npm run build`
 - `npx changeset`
 - `npx changeset version`
