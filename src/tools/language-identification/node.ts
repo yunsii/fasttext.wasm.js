@@ -5,9 +5,6 @@ import languages from './languages.json'
 import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 
-const modeRelativePath = '../../models/lid.176.ftz'
-const defaultModelHref = new URL(modeRelativePath, import.meta.url).href
-
 export interface LanguageIdentificationModelOptions {
   modelHref?: string
 }
@@ -17,6 +14,9 @@ export class LanguageIdentificationModel {
   model: FastTextModel | null = null
 
   constructor(options: LanguageIdentificationModelOptions = {}) {
+    const modeRelativePath = '../../models/lid.176.ftz'
+    const defaultModelHref = new URL(modeRelativePath, import.meta.url).href
+
     const { modelHref = defaultModelHref } = options
     this.modelHref = modelHref
   }
