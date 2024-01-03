@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.4
+
+### Patch Changes
+
+- 🐛 fix: initial model href in constructor
+
 ## 0.0.1-next.3
 
 ### Patch Changes
