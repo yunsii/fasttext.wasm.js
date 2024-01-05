@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.6
+
+### Patch Changes
+
+- fix: release with build
+
 ## 0.0.1-next.5
 
 ### Patch Changes
