@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.7
+
+### Patch Changes
+
+- ✨ feat: fallback scriptDirectory to root path
+
 ## 0.0.1-next.6
 
 ### Patch Changes
