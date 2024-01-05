@@ -60,6 +60,7 @@ console.log(result) // 'en'
 ## Related
 
 - [awesome-exhibition/fasttext.wasm.js](https://awesome-exhibition.vercel.app/awesome/fasttext.wasm.js) - Next.js example.
+- [yunsii/browser-extension-with-fasttext.wasm.js](https://github.com/yunsii/browser-extension-with-fasttext.wasm.js) - Use fasttext.wasm.js in browser extension.
 
 ## Credits
 
