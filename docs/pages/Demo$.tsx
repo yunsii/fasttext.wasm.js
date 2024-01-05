@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
 import { useDebounceFn, useMount } from 'ahooks'
 
-import { LanguageIdentificationModel } from '../../src/main/browser'
-import { initializeFastTextModule } from '../../src/helpers/models/browser'
+import { LanguageIdentificationModel } from '../../src/main/common'
+import { initializeFastTextModule } from '../../src/helpers/models/common'
 
-import type { DetectLang } from '../../src/tools/language-detect/types'
+import type { IdentifyLangVector } from '../../src/tools/language-identification/types'
 
 export default function Examples() {
   const [input, setInput] = useState('Hello, world.')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<
-    | {
-        lang: DetectLang
-        possibility: number
-      }[]
-    | null
-  >(null)
+  const [result, setResult] = useState<IdentifyLangVector[] | null>(null)
 
   const handleDetect = useDebounceFn(async () => {
     setLoading(true)

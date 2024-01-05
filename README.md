@@ -8,8 +8,8 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 
 ## Features
 
-- Written in TypeScript
-- Browser, Node support
+- Written in **TypeScript**
+- **Node**, **Browser** and **Browser extension** support
 - Language identification integrated
 
 ## Usage
@@ -30,15 +30,18 @@ console.log(result) // 'en'
 ```
 
 ```ts
-// Browser
+// Others
 import {
   LanguageIdentificationModel,
   initializeFastTextModule,
-} from 'fasttext.wasm.js/browser'
+} from 'fasttext.wasm.js/common'
 
+// It will load fasttext.common.wasm from public root directly by default,
+// You can download it from https://github.com/yunsii/fasttext.wasm.js/blob/master/src/core/fastText.common.wasm
+// You can also use `locateFile` callback to custom fasttext.common.wasm full path.
 await initializeFastTextModule()
 const model = new LanguageIdentificationModel({
-  // Specific model path under public dir,
+  // Specific model path under public directory,
   // You can download it from https://fasttext.cc/docs/en/language-identification.html
   modelHref: '/models/lid.176.ftz',
 })

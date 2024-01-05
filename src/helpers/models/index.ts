@@ -1,4 +1,4 @@
-import { IS_BROWSER } from '../../constants'
+import { IS_BROWSER, IS_WORKER } from '../../constants'
 
 let readFile: typeof import('node:fs/promises').readFile
 let request: typeof import('node:http').request
@@ -8,7 +8,7 @@ export const buffer2Uin8Array = (buf: Buffer) =>
   new Uint8Array(buf.buffer, buf.byteOffset, buf.length)
 
 export const fetchFile = async (url: string): Promise<Uint8Array> => {
-  if (IS_BROWSER) {
+  if (IS_BROWSER || IS_WORKER) {
     return new Uint8Array(await (await fetch(url)).arrayBuffer())
   }
   if (url.startsWith('file://')) {

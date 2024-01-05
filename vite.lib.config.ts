@@ -40,7 +40,7 @@ export default mergeConfig(baseConfig, {
     lib: {
       entry: [
         path.resolve(__dirname, 'src/main/node.ts'),
-        path.resolve(__dirname, 'src/main/browser.ts'),
+        path.resolve(__dirname, 'src/main/common.ts'),
       ],
     },
     rollupOptions: {

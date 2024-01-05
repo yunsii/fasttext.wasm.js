@@ -3,16 +3,15 @@ import { fetchFile, getFastTextModule } from './helpers/models'
 import { FastTextModel } from './FastTextModel'
 import { modelFileInWasmFs, trainFileInWasmFs } from './constants'
 
-import type { Emscripten } from './types/emscripten'
 import type {
   FastTextCoreConstructor,
   FastTextModule,
-} from './core/fastText.browser'
+} from './core/fastText.common'
 
 export class FastText {
   core: FastTextModule
   ft: FastTextCoreConstructor
-  fs: Emscripten.FileSystem.FS
+  fs: Emscripten.FileSystemType['fs']
 
   constructor() {
     this.core = getFastTextModule()

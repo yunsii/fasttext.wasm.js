@@ -14,10 +14,10 @@
       "import": "./dist/main/node.mjs",
       "types": "./dist/main/node.d.ts"
     },
-    "./browser": {
-      "require": "./dist/main/browser.cjs",
-      "import": "./dist/main/browser.mjs",
-      "types": "./dist/main/browser.d.ts"
+    "./common": {
+      "require": "./dist/main/common.cjs",
+      "import": "./dist/main/common.mjs",
+      "types": "./dist/main/common.d.ts"
     },
     "./*": "./*"
   },
@@ -122,5 +122,8 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
+  },
+  "dependencies": {
+    "@types/emscripten": "^1.39.10"
   }
 }

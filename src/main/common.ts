@@ -1,8 +1,8 @@
-export { initializeFastTextModule } from '../helpers/models/browser'
+export { initializeFastTextModule } from '../helpers/models/common'
 export { getFastTextModule } from '../helpers/models'
 export { FastText } from '../FastText'
 export { FastTextModel } from '../FastTextModel'
-export { LanguageIdentificationModel } from '../tools/language-identification/browser'
+export { CommonLanguageIdentificationModel as LanguageIdentificationModel } from '../tools/language-identification/common'
 
 export type {
   IdentifyLang,

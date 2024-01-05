@@ -2,7 +2,7 @@
 import { modelFileInWasmFs, testFileInWasmFs } from './constants'
 import { getFastTextModule } from './helpers/models'
 
-import type { FastTextCore } from './core/fastText.browser'
+import type { FastTextCore } from './core/fastText.common'
 
 const getFloat32ArrayFromHeap = (len: number) => {
   const dataBytes = len * Float32Array.BYTES_PER_ELEMENT
