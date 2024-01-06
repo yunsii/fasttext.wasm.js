@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDebounceFn, useMount } from 'ahooks'
 
-import { getLanguageIdentificationModel } from '../../src'
+import { getLIDModel } from '../../src/main/common'
 
-import type { IdentifyLangVector } from '../../src'
+import type { IdentifyLangVector } from '../../src/main/common'
 
 export default function Examples() {
   const [input, setInput] = useState('Hello, world.')
@@ -12,9 +12,9 @@ export default function Examples() {
 
   const handleDetect = useDebounceFn(async () => {
     setLoading(true)
-    const languageIdentificationModel = await getLanguageIdentificationModel()
-    await languageIdentificationModel.load()
-    const result = await languageIdentificationModel.identifyVerbose(input)
+    const lidModel = await getLIDModel()
+    await lidModel.load()
+    const result = await lidModel.identifyVerbose(input)
     setResult(result)
     setLoading(false)
   })
