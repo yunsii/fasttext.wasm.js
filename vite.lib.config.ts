@@ -32,6 +32,10 @@ export default mergeConfig(baseConfig, {
           src: 'src/core/*',
           dest: 'core',
         },
+        {
+          src: 'src/models/language-identification/assets/*',
+          dest: 'models/language-identification/assets',
+        },
       ],
     }),
   ],
