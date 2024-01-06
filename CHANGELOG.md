@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.13
+
+### Patch Changes
+
+- 🐛 fix: fix lid model not found
+
 ## 0.0.1-next.12
 
 ### Patch Changes
