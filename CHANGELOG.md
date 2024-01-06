@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.12
+
+### Patch Changes
+
+- ✨ feat: detect origin
+
 ## 0.0.1-next.11
 
 ### Patch Changes

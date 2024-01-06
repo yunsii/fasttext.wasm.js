@@ -5,6 +5,7 @@
     "fasttext.wasm.js": "0.0.0"
   },
   "changesets": [
+    "afraid-shoes-wink",
     "beige-points-sing",
     "clean-penguins-accept",
     "late-drinks-unite",
