@@ -5,14 +5,14 @@
   "author": "Yuns <yuns.xie@qq.com>",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/main/node.mjs",
-  "module": "./dist/main/node.mjs",
-  "types": "./dist/main/node.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/main/node.cjs",
-      "import": "./dist/main/node.mjs",
-      "types": "./dist/main/node.d.ts"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
     "./*": "./*"
   },
