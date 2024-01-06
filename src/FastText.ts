@@ -3,11 +3,11 @@ import { fetchFile } from './helpers/modules'
 import { FastTextModel } from './FastTextModel'
 import { modelFileInWasmFs, trainFileInWasmFs } from './constants'
 
-import type { GetFastTextModule } from './helpers/modules'
+import type { InternalGetFastTextModule } from './helpers/modules'
 import type { FastTextCoreConstructor, FastTextModule } from './core/fastText'
 
 export interface GetFastTextClassOptions {
-  getFastTextModule: GetFastTextModule
+  getFastTextModule: InternalGetFastTextModule
 }
 
 export const getFastTextClass = async (options: GetFastTextClassOptions) => {

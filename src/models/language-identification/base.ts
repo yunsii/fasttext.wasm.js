@@ -2,19 +2,19 @@ import { getFastTextClass } from '../../FastText'
 
 import languages from './assets/languages.json'
 
-import type { GetFastTextClassOptions } from '../../FastText'
 import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
+import type { GetFastTextModule } from '@/helpers/modules'
 
 export interface BaseLanguageIdentificationModelOptions
-  extends InitializeFastTextModuleOptions,
-    GetFastTextClassOptions {
+  extends InitializeFastTextModuleOptions {
+  getFastTextModule: GetFastTextModule
   modelPath?: string
 }
 
 export class BaseLanguageIdentificationModel {
-  getFastTextModule: GetFastTextClassOptions['getFastTextModule']
+  getFastTextModule: GetFastTextModule
   wasmPath: InitializeFastTextModuleOptions['wasmPath']
   modelPath: string
   model: FastTextModel | null = null
@@ -37,7 +37,11 @@ export class BaseLanguageIdentificationModel {
   async load() {
     if (!this.model) {
       const FastText = await getFastTextClass({
-        getFastTextModule: this.getFastTextModule,
+        getFastTextModule: () => {
+          return this.getFastTextModule({
+            wasmPath: this.wasmPath,
+          })
+        },
       })
       const fastText = new FastText()
       const modelHref = this.modelPath

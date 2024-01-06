@@ -1,5 +1,6 @@
 import { IS_BROWSER, IS_WORKER } from '../../constants'
 
+import type { InitializeFastTextModuleOptions } from './types'
 import type { FastTextModule } from '@/core/fastText'
 
 let readFile: typeof import('node:fs/promises').readFile
@@ -31,4 +32,8 @@ export const fetchFile = async (url: string): Promise<Uint8Array> => {
   }
 }
 
-export type GetFastTextModule = () => Promise<FastTextModule>
+export type GetFastTextModule = (
+  options?: InitializeFastTextModuleOptions,
+) => Promise<FastTextModule>
+
+export type InternalGetFastTextModule = () => Promise<FastTextModule>
