@@ -11,9 +11,15 @@ export interface LanguageIdentificationModelOptions
 
 export class LanguageIdentificationModel extends BaseLanguageIdentificationModel {
   constructor(options: LanguageIdentificationModelOptions = {}) {
+    // Detect origin, in Next.js without origin prefix, it will prefix with <origin>/_next/static/chunks/<my-path>
+    const origin =
+      typeof globalThis.location !== 'undefined'
+        ? globalThis.location.origin
+        : ''
+
     super({
-      wasmPath: `${commonAssetsDir}/fastText.common.wasm`,
-      modelPath: `${commonAssetsModelsDir}/lid.176.ftz`,
+      wasmPath: `${origin}${commonAssetsDir}/fastText.common.wasm`,
+      modelPath: `${origin}${commonAssetsModelsDir}/lid.176.ftz`,
       ...options,
       getFastTextModule,
     })
