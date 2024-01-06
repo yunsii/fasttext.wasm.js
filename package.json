@@ -47,7 +47,16 @@
     "wasm",
     "node",
     "browser",
-    "language-detect"
+    "browser-extension",
+    "web-extension",
+    "natural-language",
+    "natural-language-processing",
+    "nlp",
+    "language",
+    "language-detect",
+    "language-detector",
+    "language-detection",
+    "language-identification"
   ],
   "funding": [
     "https://opencollective.com/yuns",
