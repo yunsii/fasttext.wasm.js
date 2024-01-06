@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.9
+
+### Patch Changes
+
+- 🐛 fix: exports in package.json
+
 ## 0.0.1-next.8
 
 ### Patch Changes
