@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.8
+
+### Patch Changes
+
+- ✨ feat!: simplify usage
+
 ## 0.0.1-next.7
 
 ### Patch Changes
