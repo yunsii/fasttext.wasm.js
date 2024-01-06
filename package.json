@@ -10,31 +10,31 @@
   "types": "./dist/main/node.d.ts",
   "exports": {
     ".": {
-      "default": {
-        "require": "./dist/main/node.cjs",
-        "import": "./dist/main/node.mjs",
-        "types": "./dist/main/node.d.ts"
+      "browser": {
+        "require": "./dist/main/common.cjs",
+        "import": "./dist/main/common.mjs",
+        "types": "./dist/main/common.d.ts"
+      },
+      "worker": {
+        "require": "./dist/main/common.cjs",
+        "import": "./dist/main/common.mjs",
+        "types": "./dist/main/common.d.ts"
       },
       "node": {
         "require": "./dist/main/node.cjs",
         "import": "./dist/main/node.mjs",
         "types": "./dist/main/node.d.ts"
       },
-      "browser": {
-        "require": "./dist/main/browser.cjs",
-        "import": "./dist/main/browser.mjs",
-        "types": "./dist/main/browser.d.ts"
-      },
-      "worker": {
-        "require": "./dist/main/browser.cjs",
-        "import": "./dist/main/browser.mjs",
-        "types": "./dist/main/browser.d.ts"
+      "default": {
+        "require": "./dist/main/node.cjs",
+        "import": "./dist/main/node.mjs",
+        "types": "./dist/main/node.d.ts"
       }
     },
     "./common": {
-      "require": "./dist/main/browser.cjs",
-      "import": "./dist/main/browser.mjs",
-      "types": "./dist/main/browser.d.ts"
+      "require": "./dist/main/common.cjs",
+      "import": "./dist/main/common.mjs",
+      "types": "./dist/main/common.d.ts"
     },
     "./*": "./*"
   },
