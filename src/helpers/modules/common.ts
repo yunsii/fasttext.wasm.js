@@ -1,5 +1,3 @@
-import fastTextModularized from '../../core/fastText.common'
-
 import type { InitializeFastTextModuleOptions } from './types'
 
 /**
@@ -13,6 +11,10 @@ export async function initializeFastTextModule(
   options: InitializeFastTextModuleOptions = {},
 ) {
   const { wasmPath, ...rest } = options
+
+  // Dynamic import to avoid runtime resolve error
+  const fastTextModularized = (await import('../../core/fastText.common'))
+    .default
 
   return await fastTextModularized({
     // Binding js use the callback to locate wasm for now

@@ -1,11 +1,12 @@
-import fastTextModularized from '../../core/fastText.node'
-
 import type { InitializeFastTextModuleOptions } from './types'
 
 export async function initializeFastTextModule(
   options: InitializeFastTextModuleOptions = {},
 ) {
   const { wasmPath, ...rest } = options
+
+  // Dynamic import to avoid runtime resolve error
+  const fastTextModularized = (await import('../../core/fastText.node')).default
 
   if (wasmPath) {
     return await fastTextModularized({
@@ -18,5 +19,6 @@ export async function initializeFastTextModule(
       ...rest,
     })
   }
+
   return await fastTextModularized(rest)
 }
