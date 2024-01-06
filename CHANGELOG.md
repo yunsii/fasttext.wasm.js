@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.11
+
+### Patch Changes
+
+- feat!: individual node and common entries
+
 ## 0.0.1-next.10
 
 ### Patch Changes
