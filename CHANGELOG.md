@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.10
+
+### Patch Changes
+
+- 🐛 fix: dynamic import fastTextModularized
+
 ## 0.0.1-next.9
 
 ### Patch Changes
