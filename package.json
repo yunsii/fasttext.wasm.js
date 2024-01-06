@@ -14,11 +14,6 @@
       "import": "./dist/main/node.mjs",
       "types": "./dist/main/node.d.ts"
     },
-    "./common": {
-      "require": "./dist/main/common.cjs",
-      "import": "./dist/main/common.mjs",
-      "types": "./dist/main/common.d.ts"
-    },
     "./*": "./*"
   },
   "files": [

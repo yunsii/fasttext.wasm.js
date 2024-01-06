@@ -1,27 +1,42 @@
-import { FastText } from '../../FastText'
+import { getFastTextClass } from '../../FastText'
 
-import languages from './languages.json'
+import languages from './assets/languages.json'
 
 import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
+import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
 
-export interface BaseLanguageIdentificationModelOptions {
-  modelHref: string
+export interface BaseLanguageIdentificationModelOptions
+  extends InitializeFastTextModuleOptions {
+  modelPath?: string
 }
 
 export class BaseLanguageIdentificationModel {
-  modelHref: string
+  wasmPath: InitializeFastTextModuleOptions['wasmPath']
+  modelPath: string
   model: FastTextModel | null = null
 
   constructor(options: BaseLanguageIdentificationModelOptions) {
-    const { modelHref } = options
-    this.modelHref = modelHref
+    const { wasmPath, modelPath } = options
+
+    if (!modelPath) {
+      throw new Error('No model path provided.')
+    }
+
+    this.wasmPath = wasmPath
+    this.modelPath = modelPath
   }
 
+  /**
+   * Use `lid.176.ftz` as default model
+   */
   async load() {
     if (!this.model) {
+      const FastText = await getFastTextClass({
+        wasmPath: this.wasmPath,
+      })
       const fastText = new FastText()
-      const modelHref = this.modelHref
+      const modelHref = this.modelPath
       this.model = await fastText.loadModel(modelHref)
     }
     return this.model

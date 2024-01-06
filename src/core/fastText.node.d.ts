@@ -1,3 +1,5 @@
+/// <reference types="emscripten" />
+
 import type { Pair, Vector } from '../types/misc'
 
 export interface FastTextCoreConstructor {
@@ -52,8 +54,15 @@ export interface Float32ArrayBridge {
   size: number
 }
 
+const fs = FS
+type TFS = typeof fs
+
 export interface FastTextModule extends EmscriptenModule {
-  FS: Emscripten.FileSystemType['fs']
+  FS: {
+    writeFile: TFS['writeFile']
+    readFile: TFS['readFile']
+    unlink: TFS['unlink']
+  }
   FastText: FastTextCoreConstructor
   Args: any
   ModelName: any

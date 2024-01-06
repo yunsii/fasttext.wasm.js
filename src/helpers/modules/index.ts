@@ -1,5 +1,7 @@
 import { IS_BROWSER, IS_WORKER } from '../../constants'
 
+import type { InitializeFastTextModuleOptions } from './types'
+
 let readFile: typeof import('node:fs/promises').readFile
 let request: typeof import('node:http').request
 let fileURLToPath: typeof import('node:url').fileURLToPath
@@ -29,12 +31,13 @@ export const fetchFile = async (url: string): Promise<Uint8Array> => {
   }
 }
 
-export function getFastTextModule() {
-  if (!globalThis.fastTextModule) {
-    if (IS_BROWSER) {
-      throw new Error('You should `initializeBrowserFastTextModule` firstly')
-    }
-    throw new Error('You should `initializeNodeFastTextModule` firstly')
+export async function getFastTextModule(
+  options: InitializeFastTextModuleOptions = {},
+) {
+  if (IS_BROWSER || IS_WORKER) {
+    const { initializeFastTextModule } = await import('./common')
+    return await initializeFastTextModule(options)
   }
-  return globalThis.fastTextModule
+  const { initializeFastTextModule } = await import('./node')
+  return await initializeFastTextModule(options)
 }

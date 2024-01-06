@@ -1,39 +1,37 @@
 // Based on https://github.dev/facebookresearch/fastText/blob/166ce2c71a497ff81cb62ec151be5b569e1f1be6/webassembly/fasttext.js
 import { modelFileInWasmFs, testFileInWasmFs } from './constants'
-import { getFastTextModule } from './helpers/models'
 
-import type { FastTextCore } from './core/fastText.common'
-
-const getFloat32ArrayFromHeap = (len: number) => {
-  const dataBytes = len * Float32Array.BYTES_PER_ELEMENT
-  const dataPtr = getFastTextModule()._malloc(dataBytes)
-  const dataHeap = new Uint8Array(
-    getFastTextModule().HEAPU8.buffer,
-    dataPtr,
-    dataBytes,
-  )
-  return {
-    ptr: dataHeap.byteOffset,
-    size: len,
-    buffer: dataHeap.buffer,
-  }
-}
-
-const heapToFloat32 = (r: { ptr: any; size: any; buffer: any }) =>
-  new Float32Array(r.buffer, r.ptr, r.size)
+import type { FastTextCore, FastTextModule } from './core/fastText'
 
 /**
  * `FastTextModel` represents a trained model.
  */
 export class FastTextModel {
+  core: FastTextModule
   ft: FastTextCore
 
   constructor(
     /** webassembly object that makes the bridge between js and C++ */
     fastTextNative: FastTextCore,
+    fastTextModule: FastTextModule,
   ) {
     this.ft = fastTextNative
+    this.core = fastTextModule
   }
+
+  getFloat32ArrayFromHeap = (len: number) => {
+    const dataBytes = len * Float32Array.BYTES_PER_ELEMENT
+    const dataPtr = this.core._malloc(dataBytes)
+    const dataHeap = new Uint8Array(this.core.HEAPU8.buffer, dataPtr, dataBytes)
+    return {
+      ptr: dataHeap.byteOffset,
+      size: len,
+      buffer: dataHeap.buffer,
+    }
+  }
+
+  heapToFloat32 = (r: { ptr: any; size: any; buffer: any }) =>
+    new Float32Array(r.buffer, r.ptr, r.size)
 
   /**
    * isQuant
@@ -62,10 +60,10 @@ export class FastTextModel {
    *
    */
   getWordVector(word: string): Float32Array {
-    const b = getFloat32ArrayFromHeap(this.getDimension())
+    const b = this.getFloat32ArrayFromHeap(this.getDimension())
     this.ft.getWordVector(b, word)
 
-    return heapToFloat32(b)
+    return this.heapToFloat32(b)
   }
 
   /**
@@ -79,10 +77,10 @@ export class FastTextModel {
       // ;("sentence vector processes one line at a time (remove '\\n')")
     }
     text += '\n'
-    const b = getFloat32ArrayFromHeap(this.getDimension())
+    const b = this.getFloat32ArrayFromHeap(this.getDimension())
     this.ft.getSentenceVector(b, text)
 
-    return heapToFloat32(b)
+    return this.heapToFloat32(b)
   }
 
   /**
@@ -150,10 +148,10 @@ export class FastTextModel {
    *
    */
   getInputVector(ind: number): Float32Array {
-    const b = getFloat32ArrayFromHeap(this.getDimension())
+    const b = this.getFloat32ArrayFromHeap(this.getDimension())
     this.ft.getInputVector(b, ind)
 
-    return heapToFloat32(b)
+    return this.heapToFloat32(b)
   }
 
   /**
@@ -268,7 +266,7 @@ export class FastTextModel {
    */
   saveModel() {
     this.ft.saveModel(modelFileInWasmFs)
-    const content = getFastTextModule().FS.readFile(modelFileInWasmFs, {
+    const content = this.core.FS.readFile(modelFileInWasmFs, {
       encoding: 'binary',
     })
     return new Blob(
@@ -311,7 +309,7 @@ export class FastTextModel {
         })
         .then((bytes) => {
           const byteArray = new Uint8Array(bytes)
-          const FS = getFastTextModule().FS
+          const FS = this.core.FS
           FS.writeFile(testFileInWasmFs, byteArray)
         })
         .then(() => {

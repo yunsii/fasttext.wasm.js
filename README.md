@@ -9,46 +9,39 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 ## Features
 
 - Written in **TypeScript**
-- **Node**, **Browser** and **Browser extension** support
-- Language identification integrated
+- Supported **Node**, **Worker**, **Browser** and **Browser extension** runtime
+- Integrated language identification
 
 ## Usage
 
-```ts
-// Node
-import {
-  LanguageIdentificationModel,
-  initializeFastTextModule,
-} from 'fasttext.wasm.js'
+In Node.js, you should use this approach [for binding js best performance](https://github.com/emscripten-core/emscripten/blob/5ffaadf56234ecf9b645df72e715c08322821553/src/settings.js#L1333).
 
-await initializeFastTextModule()
-// Use lid.176.ftz as default model
-const model = new LanguageIdentificationModel()
-await model.load()
-const result = await model.identify('Hello, world!')
+```ts
+import { getLIDModel } from 'fasttext.wasm.js'
+
+const lidModel = await getLIDModel()
+await lidModel.load()
+const result = await lidModel.identify('Hello, world!')
 console.log(result) // 'en'
 ```
 
-```ts
-// Others
-import {
-  LanguageIdentificationModel,
-  initializeFastTextModule,
-} from 'fasttext.wasm.js/common'
+In others environments, use like below:
 
-// It will load fasttext.common.wasm from public root directly by default,
-// You can download it from https://github.com/yunsii/fasttext.wasm.js/blob/master/src/core/fastText.common.wasm
-// You can also use `locateFile` callback to custom fasttext.common.wasm full path.
-await initializeFastTextModule()
-const model = new LanguageIdentificationModel({
-  // Specific model path under public directory,
-  // You can download it from https://fasttext.cc/docs/en/language-identification.html
-  modelHref: '/models/lid.176.ftz',
-})
-await model.load()
-const result = await model.identify('Hello, world!')
+```ts
+import { getLIDModel } from 'fasttext.wasm.js'
+
+const lidModel = await getLIDModel()
+// Default paths:
+// {
+//   wasmPath: '/fastText/fasttext.common.wasm',
+//   modelPath: '/fastText/models/lid.176.ftz',
+// }
+await lidModel.load()
+const result = await lidModel.identify('Hello, world!')
 console.log(result) // 'en'
 ```
+
+**Do not forget** that download and place [`/fastText/fasttext.common.wasm`](./src/core/fastText.common.wasm) and [`/fastText/models/lid.176.ftz`](./src/models/language-identification/assets/lid.176.ftz) in public root directory. You can override the default paths if necessary.
 
 ## Benchmark
 
@@ -70,6 +63,7 @@ console.log(result) // 'en'
 ## References
 
 - [Language identification](https://fasttext.cc/blog/2017/10/02/blog-post.html)
+- [Language identification resources](https://fasttext.cc/docs/en/language-identification.html)
 
 ## Build & Publish
 

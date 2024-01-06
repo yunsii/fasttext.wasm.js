@@ -38,10 +38,7 @@ export default mergeConfig(baseConfig, {
   build: {
     minify: false,
     lib: {
-      entry: [
-        path.resolve(__dirname, 'src/main/node.ts'),
-        path.resolve(__dirname, 'src/main/common.ts'),
-      ],
+      entry: [path.resolve(__dirname, 'src/index.ts')],
     },
     rollupOptions: {
       // inspired from: https://github.com/vitejs/vite/discussions/1736#discussioncomment-2621441

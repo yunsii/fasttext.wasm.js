@@ -1,3 +1,6 @@
+export const commonAssetsDir = '/fastText'
+export const commonAssetsModelsDir = '/fastText/models'
+
 export const trainFileInWasmFs = 'train.txt'
 export const testFileInWasmFs = 'test.txt'
 export const modelFileInWasmFs = 'model.bin'

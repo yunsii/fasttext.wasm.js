@@ -1,7 +1,6 @@
 import fastTextModularized from '../../core/fastText.common'
 
-export interface InitializeFastTextModuleOptions
-  extends Partial<Pick<EmscriptenModule, 'locateFile'>> {}
+import type { InitializeFastTextModuleOptions } from './types'
 
 /**
  * If `document.currentScript.src` is falsy value, it will load `fasttext.common.wasm` from public root directly by default,
@@ -11,13 +10,21 @@ export interface InitializeFastTextModuleOptions
  * You can also use `locateFile` callback to custom `fasttext.common.wasm` full path.
  */
 export async function initializeFastTextModule(
-  options?: InitializeFastTextModuleOptions,
+  options: InitializeFastTextModuleOptions = {},
 ) {
-  globalThis.fastTextModule ??= await fastTextModularized({
+  const { wasmPath, ...rest } = options
+
+  return await fastTextModularized({
+    // Binding js use the callback to locate wasm for now
     locateFile: (url, scriptDirectory) => {
+      if (wasmPath) {
+        return typeof wasmPath === 'string'
+          ? wasmPath
+          : wasmPath(url, scriptDirectory)
+      }
+
       return (scriptDirectory || '/') + url
     },
-    ...options,
+    ...rest,
   })
-  return globalThis.fastTextModule
 }

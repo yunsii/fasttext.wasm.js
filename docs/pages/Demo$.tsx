@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDebounceFn, useMount } from 'ahooks'
 
-import { LanguageIdentificationModel } from '../../src/main/common'
-import { initializeFastTextModule } from '../../src/helpers/models/common'
+import { getLanguageIdentificationModel } from '../../src'
 
-import type { IdentifyLangVector } from '../../src/tools/language-identification/types'
+import type { IdentifyLangVector } from '../../src'
 
 export default function Examples() {
   const [input, setInput] = useState('Hello, world.')
@@ -13,12 +12,9 @@ export default function Examples() {
 
   const handleDetect = useDebounceFn(async () => {
     setLoading(true)
-    await initializeFastTextModule()
-    const model = new LanguageIdentificationModel({
-      modelHref: '/models/lid.176.ftz',
-    })
-    await model.load()
-    const result = await model.identifyVerbose(input)
+    const languageIdentificationModel = await getLanguageIdentificationModel()
+    await languageIdentificationModel.load()
+    const result = await languageIdentificationModel.identifyVerbose(input)
     setResult(result)
     setLoading(false)
   })
