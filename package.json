@@ -5,14 +5,36 @@
   "author": "Yuns <yuns.xie@qq.com>",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/main/node.cjs",
+  "module": "./dist/main/node.mjs",
+  "types": "./dist/main/node.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "default": {
+        "require": "./dist/main/node.cjs",
+        "import": "./dist/main/node.mjs",
+        "types": "./dist/main/node.d.ts"
+      },
+      "node": {
+        "require": "./dist/main/node.cjs",
+        "import": "./dist/main/node.mjs",
+        "types": "./dist/main/node.d.ts"
+      },
+      "browser": {
+        "require": "./dist/main/browser.cjs",
+        "import": "./dist/main/browser.mjs",
+        "types": "./dist/main/browser.d.ts"
+      },
+      "worker": {
+        "require": "./dist/main/browser.cjs",
+        "import": "./dist/main/browser.mjs",
+        "types": "./dist/main/browser.d.ts"
+      }
+    },
+    "./common": {
+      "require": "./dist/main/browser.cjs",
+      "import": "./dist/main/browser.mjs",
+      "types": "./dist/main/browser.d.ts"
     },
     "./*": "./*"
   },

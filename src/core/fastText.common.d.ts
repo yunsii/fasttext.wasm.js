@@ -1,5 +1,3 @@
-/// <reference types="emscripten" />
-
 import type { Pair, Vector } from '../types/misc'
 
 export interface FastTextCoreConstructor {

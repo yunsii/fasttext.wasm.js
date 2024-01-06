@@ -28,7 +28,7 @@ console.log(result) // 'en'
 In others environments, use like below:
 
 ```ts
-import { getLIDModel } from 'fasttext.wasm.js'
+import { getLIDModel } from 'fasttext.wasm.js/common'
 
 const lidModel = await getLIDModel()
 // Default paths:

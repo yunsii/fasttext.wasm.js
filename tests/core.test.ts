@@ -1,8 +1,10 @@
 import { expect, test } from 'vitest'
 
-import { getFastTextClass } from '../src'
+import { getFastTextClass, getFastTextModule } from '../src/main/node'
 
-const FastText = await getFastTextClass()
+const FastText = await getFastTextClass({
+  getFastTextModule,
+})
 const fastText = new FastText()
 
 test('file system', () => {

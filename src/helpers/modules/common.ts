@@ -30,3 +30,9 @@ export async function initializeFastTextModule(
     ...rest,
   })
 }
+
+export async function getFastTextModule(
+  options: InitializeFastTextModuleOptions = {},
+) {
+  return await initializeFastTextModule(options)
+}

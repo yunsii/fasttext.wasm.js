@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 
 import 'cross-fetch/polyfill'
 
-import { getLIDModel } from '../src'
+import { getLIDModel } from '../src/main/node'
 
 // ref: https://github.dev/facebookresearch/fastText/blob/166ce2c71a497ff81cb62ec151be5b569e1f1be6/webassembly/doc/examples/predict.html
 test('language predict', async () => {

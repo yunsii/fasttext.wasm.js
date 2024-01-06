@@ -1,15 +1,19 @@
 // Based on https://github.dev/facebookresearch/fastText/blob/166ce2c71a497ff81cb62ec151be5b569e1f1be6/webassembly/fasttext.js
-import { fetchFile, getFastTextModule } from './helpers/modules'
+import { fetchFile } from './helpers/modules'
 import { FastTextModel } from './FastTextModel'
 import { modelFileInWasmFs, trainFileInWasmFs } from './constants'
 
+import type { GetFastTextModule } from './helpers/modules'
 import type { FastTextCoreConstructor, FastTextModule } from './core/fastText'
-import type { InitializeFastTextModuleOptions } from './helpers/modules/types'
 
-export const getFastTextClass = async (
-  options?: InitializeFastTextModuleOptions,
-) => {
-  const fastTextModule = await getFastTextModule(options)
+export interface GetFastTextClassOptions {
+  getFastTextModule: GetFastTextModule
+}
+
+export const getFastTextClass = async (options: GetFastTextClassOptions) => {
+  const { getFastTextModule } = options
+
+  const fastTextModule = await getFastTextModule()
 
   return class FastText {
     core: FastTextModule

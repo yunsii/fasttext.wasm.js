@@ -22,3 +22,9 @@ export async function initializeFastTextModule(
 
   return await fastTextModularized(rest)
 }
+
+export async function getFastTextModule(
+  options: InitializeFastTextModuleOptions = {},
+) {
+  return await initializeFastTextModule(options)
+}

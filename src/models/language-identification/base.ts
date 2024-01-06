@@ -2,27 +2,31 @@ import { getFastTextClass } from '../../FastText'
 
 import languages from './assets/languages.json'
 
+import type { GetFastTextClassOptions } from '../../FastText'
 import type { IdentifyLang, IdentifyLangVector } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
 
 export interface BaseLanguageIdentificationModelOptions
-  extends InitializeFastTextModuleOptions {
+  extends InitializeFastTextModuleOptions,
+    GetFastTextClassOptions {
   modelPath?: string
 }
 
 export class BaseLanguageIdentificationModel {
+  getFastTextModule: GetFastTextClassOptions['getFastTextModule']
   wasmPath: InitializeFastTextModuleOptions['wasmPath']
   modelPath: string
   model: FastTextModel | null = null
 
   constructor(options: BaseLanguageIdentificationModelOptions) {
-    const { wasmPath, modelPath } = options
+    const { getFastTextModule, wasmPath, modelPath } = options
 
     if (!modelPath) {
       throw new Error('No model path provided.')
     }
 
+    this.getFastTextModule = getFastTextModule
     this.wasmPath = wasmPath
     this.modelPath = modelPath
   }
@@ -33,7 +37,7 @@ export class BaseLanguageIdentificationModel {
   async load() {
     if (!this.model) {
       const FastText = await getFastTextClass({
-        wasmPath: this.wasmPath,
+        getFastTextModule: this.getFastTextModule,
       })
       const fastText = new FastText()
       const modelHref = this.modelPath
