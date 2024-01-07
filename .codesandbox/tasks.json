@@ -1,0 +1,27 @@
+{
+  "$schema": "https://codesandbox.io/schemas/tasks.json",
+  "setupTasks": ["pnpm install", "pnpm build"],
+  "tasks": {
+    "install-dependencies": {
+      "name": "Install Dependencies",
+      "command": "pnpm install"
+    },
+    "start-lib": {
+      "name": "Run Dev Server",
+      "command": "pnpm dev",
+      "runAtStart": true
+    },
+    "test": {
+      "name": "Test",
+      "command": "pnpm test"
+    },
+    "bench": {
+      "name": "Bench",
+      "command": "cd bench && pnpm bench"
+    },
+    "bench:test": {
+      "name": "Bench Test",
+      "command": "cd bench && pnpm test"
+    }
+  }
+}
