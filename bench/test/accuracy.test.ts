@@ -14,22 +14,22 @@ import { getPaplucaLanguageIdentificationTestData } from './data'
 
 const data = getPaplucaLanguageIdentificationTestData()
 
+interface BasicResultItem {
+  lang: string
+  langIso639_3?: string | null
+  fastText?: string | null
+  languageDetect?: string | null
+  franc?: string | null
+  text: string
+}
+
 describe('basic', async () => {
   const lidModel = await getLIDModel()
   const lngDetector = new LanguageDetect()
   lngDetector.setLanguageType('iso3')
 
   const limit = pLimit(200)
-  const input: Promise<void>[] = []
-
-  const result: {
-    lang: string
-    langIso639_3?: string | null
-    fastText?: string | null
-    languageDetect?: string | null
-    franc?: string | null
-    text: string
-  }[] = []
+  const input: Promise<BasicResultItem>[] = []
 
   data.forEach((item) => {
     input.push(
@@ -38,7 +38,7 @@ describe('basic', async () => {
         const languageDetectIdentified = lngDetector.detect(item.text)
         const francIdentified = franc(item.text)
 
-        result.push({
+        return {
           lang: item.lang,
           langIso639_3: getIso639_3DataBy639_1Id(item.lang)?.Id || null,
           fastText:
@@ -48,11 +48,11 @@ describe('basic', async () => {
             : null,
           franc: francIdentified.length ? francIdentified : null,
           text: item.text,
-        })
+        }
       }),
     )
   })
-  await Promise.all(input)
+  const result = await Promise.all(input)
 
   fs.writeFile(
     path.join(__dirname, 'fixtures/accuracy.csv'),
