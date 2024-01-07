@@ -2,10 +2,12 @@ import { getFastTextClass } from '../../FastText'
 
 import languages from './assets/languages.json'
 
-import type { IdentifyLang, IdentifyLangVector } from './types'
+import type { IdentifyLangResult, RawIdentifyLang } from './types'
 import type { FastTextModel } from '../../FastTextModel'
 import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
 import type { GetFastTextModule } from '@/helpers/modules'
+
+const LANGUAGES_LIMIT = Object.keys(languages).length
 
 export interface BaseLanguageIdentificationModelOptions
   extends InitializeFastTextModuleOptions {
@@ -18,6 +20,38 @@ export class BaseLanguageIdentificationModel {
   wasmPath: InitializeFastTextModuleOptions['wasmPath']
   modelPath: string
   model: FastTextModel | null = null
+
+  static formatLang(raw: string) {
+    const identifyLang = raw.replace('__label__', '') as RawIdentifyLang
+    return BaseLanguageIdentificationModel.normalizeIdentifyLang(identifyLang)
+  }
+
+  /**
+   * fastText [language identification model](https://fasttext.cc/docs/en/language-identification.html)
+   * result is based on [List of Wikipedias](https://en.wikipedia.org/wiki/List_of_Wikipedias) `WP code`
+   *
+   * This lib provide a normalize method to transform `WP code` to ISO 639-3 as much as possible.
+   *
+   * More detail refer to [languages scripts](https://github.com/yunsii/fasttext.wasm.js/tree/master/scripts/languages).
+   *
+   * Notice: ISO 639 provides two and three-character codes for representing names of languages. ISO 3166 provides two and three-character codes for representing names of countries.
+   */
+  static normalizeIdentifyLang(lang: RawIdentifyLang): {
+    /**
+     * The three-letter 639-3 identifier.
+     *
+     * Attentions:
+     *
+     * - `eml` is retired in ISO 639-3
+     * - `bih` and `nah` are ISO 639-2 codes, but not standard ISO 639-3 codes
+     */
+    alpha3: string
+    alpha2: string | null
+    /** refName: manually normalize rawLanguage fit https://iso639-3.sil.org/code_tables/download_tables */
+    refName: string
+  } {
+    return languages[lang]
+  }
 
   constructor(options: BaseLanguageIdentificationModelOptions) {
     const { getFastTextModule, wasmPath, modelPath } = options
@@ -50,48 +84,28 @@ export class BaseLanguageIdentificationModel {
     return this.model
   }
 
-  static formatLang(raw: string) {
-    return raw.replace('__label__', '') as IdentifyLang
-  }
+  /** Return the top possibility language */
+  async identify(text: string, top: number): Promise<IdentifyLangResult[]>
+  /** Return the max possibility language */
+  async identify(text: string): Promise<IdentifyLangResult>
+  async identify(text: string, top?: number) {
+    const minTop = Math.max(top || 1, 1)
+    const limitTop = Math.min(LANGUAGES_LIMIT, minTop)
 
-  async identify(text: string) {
-    const vector = (await this.load()).predict(text, 1, 0.0)
-    return BaseLanguageIdentificationModel.formatLang(vector.get(0)[1])
-  }
+    const vector = (await this.load()).predict(text, limitTop, 0.0)
 
-  async identifyVerbose(text: string) {
-    const vector = (await this.load()).predict(text, 10, 0.0)
+    if (typeof top === 'undefined') {
+      return {
+        ...BaseLanguageIdentificationModel.formatLang(vector.get(0)[1]),
+        possibility: vector.get(0)[0],
+      }
+    }
+
     return Array.from({ length: vector.size() }).map((_, index) => {
       return {
-        lang: BaseLanguageIdentificationModel.formatLang(vector.get(index)[1]),
+        ...BaseLanguageIdentificationModel.formatLang(vector.get(index)[1]),
         possibility: vector.get(index)[0],
-      } as IdentifyLangVector
+      }
     })
-  }
-
-  /**
-   * fastText [language identification model](https://fasttext.cc/docs/en/language-identification.html)
-   * result is based on [List of Wikipedias](https://en.wikipedia.org/wiki/List_of_Wikipedias) `WP code`
-   *
-   * This lib provide a normalize method to transform `WP code` to ISO 639-3 as much as possible.
-   *
-   * More detail refer to [languages scripts](https://github.com/yunsii/fasttext.wasm.js/tree/master/scripts/languages).
-   *
-   * Notice: ISO 639 provides two and three-character codes for representing names of languages. ISO 3166 provides two and three-character codes for representing names of countries.
-   */
-  normalizeIdentifyLang(lang: IdentifyLang): {
-    /**
-     * The three-letter 639-3 identifier.
-     *
-     * Attentions:
-     *
-     * - `eml` is not standard ISO 639-2 and ISO 639-3 code
-     * - `bih` and `nah` are ISO 639-2 codes, but not standard ISO 639-3 codes
-     */
-    alpha3Code: string
-    /** refName: manually normalize rawLanguage fit https://iso639-3.sil.org/code_tables/download_tables */
-    refName: string
-  } {
-    return languages[lang]
   }
 }

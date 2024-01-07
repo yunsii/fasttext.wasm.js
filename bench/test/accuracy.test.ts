@@ -10,7 +10,7 @@ import { eld } from 'eld'
 import cld from 'cld'
 
 import { getLIDModel } from '../../src/main/node'
-import { getIso639_3DataBy639_1Id } from '../../src/helpers/iso-639-3'
+import { getIso639_3DataBy639_1Id } from '../../scripts/languages/helpers'
 
 import { getPaplucaLanguageIdentificationTestData } from './data'
 
@@ -52,8 +52,7 @@ describe('basic', async () => {
         return {
           lang: item.lang,
           langIso639_3: getIso639_3DataBy639_1Id(item.lang)?.Id || null,
-          fastText:
-            lidModel.normalizeIdentifyLang(fastTextIdentified).alpha3Code,
+          fastText: fastTextIdentified.alpha3,
           languageDetect: languageDetectIdentified.length
             ? languageDetectIdentified[0][0]
             : null,

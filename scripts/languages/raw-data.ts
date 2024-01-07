@@ -1,5 +1,7 @@
 /**
  * rawLanguage: extracted from https://en.wikipedia.org/wiki/List_of_Wikipedias
+ *
+ * Object key is lid.176.ftx output result,
  */
 export const rawLanguageMap = {
   af: 'Afrikaans',
@@ -188,13 +190,8 @@ export const fixRefNameMap = {
   ku: 'Northern Kurdish',
 }
 
-export const fixAlpha3CodeMap = {
-  // ref: https://www.loc.gov/standards/iso639-2/php/English_list.php
-  bh: 'bih',
-}
-
 /**
- * refName: manually normalize rawLanguage fit https://iso639-3.sil.org/code_tables/download_tables
+ * refName: manually normalize `rawLanguageMap` to fit https://iso639-3.sil.org/code_tables/download_tables
  */
 export const refNameMap = {
   av: 'Avaric',
@@ -210,7 +207,7 @@ export const refNameMap = {
   el: 'Modern Greek (1453-)',
   // ref: https://en.wikipedia.org/wiki/Emilian-Romagnol_linguistic_group
   // egl/Emilian + rgn/Romagnol
-  eml: 'Emilian-Romagnol',
+  eml: 'Emiliano-Romagnolo',
   frr: 'Northern Frisian',
   fy: 'Western Frisian',
   gom: 'Goan Konkani',
@@ -243,4 +240,9 @@ export const refNameMap = {
   xal: 'Kalmyk',
   // new WP code: zh-yue
   yue: 'Yue Chinese',
+}
+
+export const fixAlpha3CodeMap = {
+  // ref: https://www.loc.gov/standards/iso639-2/php/English_list.php
+  bh: 'bih',
 }

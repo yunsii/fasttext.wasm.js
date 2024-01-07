@@ -36,11 +36,6 @@
       "import": "./dist/main/common.mjs",
       "types": "./dist/main/common.d.ts"
     },
-    "./helpers/iso-639-3": {
-      "require": "./dist/helpers/iso-639-3.cjs",
-      "import": "./dist/helpers/iso-639-3.mjs",
-      "types": "./dist/helpers/iso-639-3.d.ts"
-    },
     "./*": "./*"
   },
   "files": [

@@ -45,7 +45,6 @@ export default mergeConfig(baseConfig, {
       entry: [
         path.resolve(__dirname, 'src/main/node.ts'),
         path.resolve(__dirname, 'src/main/common.ts'),
-        path.resolve(__dirname, 'src/helpers/iso-639-3.ts'),
       ],
     },
     rollupOptions: {

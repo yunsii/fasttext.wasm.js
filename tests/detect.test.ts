@@ -35,7 +35,7 @@ describe('language detect', async () => {
   Object.keys(tests).forEach(async (item, index) => {
     test.concurrent(`language detect ${index}`, async () => {
       const lang = await lidModel.identify(item)
-      expect(lang).equals(tests[item as keyof typeof tests])
+      expect(lang.alpha2).equals(tests[item as keyof typeof tests])
     })
   })
 })

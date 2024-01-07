@@ -7,6 +7,7 @@ export {
 } from '../models/language-identification/common'
 
 export type {
-  IdentifyLang,
+  RawIdentifyLang as IdentifyLang,
   IdentifyLangVector,
+  IdentifyLangResult,
 } from '../models/language-identification/types'

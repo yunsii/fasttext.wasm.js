@@ -1,5 +1,5 @@
 /** https://fasttext.cc/blog/2017/10/02/blog-post.html#iso-codes-of-languages-supported */
-export type IdentifyLang =
+export type RawIdentifyLang =
   | 'af'
   | 'als'
   | 'am'
@@ -178,6 +178,13 @@ export type IdentifyLang =
   | 'zh'
 
 export interface IdentifyLangVector {
-  lang: IdentifyLang
+  lang: RawIdentifyLang
+  possibility: number
+}
+
+export interface IdentifyLangResult {
+  alpha3: string
+  alpha2: string | null
+  refName: string
   possibility: number
 }
