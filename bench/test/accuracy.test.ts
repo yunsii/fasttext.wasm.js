@@ -6,6 +6,8 @@ import pLimit from 'p-limit'
 import papaparse from 'papaparse'
 import { fs } from 'zx'
 import path from 'pathe'
+import { eld } from 'eld'
+import cld from 'cld'
 
 import { getLIDModel } from '../../src/main/node'
 import { getIso639_3DataBy639_1Id } from '../../src/helpers/iso-639-3'
@@ -20,6 +22,8 @@ interface BasicResultItem {
   fastText?: string | null
   languageDetect?: string | null
   franc?: string | null
+  eld?: string | null
+  cld?: string | null
   text: string
 }
 
@@ -37,6 +41,13 @@ describe('basic', async () => {
         const fastTextIdentified = await lidModel.identify(item.text)
         const languageDetectIdentified = lngDetector.detect(item.text)
         const francIdentified = franc(item.text)
+        const eldResult = eld.detect(item.text)
+        let cldResult: Awaited<ReturnType<typeof cld.detect>> | null = null
+        try {
+          cldResult = await cld.detect(item.text)
+        } catch (err) {
+          // Failed to identify language
+        }
 
         return {
           lang: item.lang,
@@ -47,6 +58,10 @@ describe('basic', async () => {
             ? languageDetectIdentified[0][0]
             : null,
           franc: francIdentified.length ? francIdentified : null,
+          eld: getIso639_3DataBy639_1Id(eldResult.language)?.Id || null,
+          cld: cldResult
+            ? getIso639_3DataBy639_1Id(cldResult.languages[0].code)?.Id || null
+            : null,
           text: item.text,
         }
       }),
@@ -64,6 +79,8 @@ describe('basic', async () => {
     fastText: 0,
     languageDetect: 0,
     franc: 0,
+    eld: 0,
+    cld: 0,
   }
 
   result.forEach((item) => {
@@ -75,14 +92,18 @@ describe('basic', async () => {
   })
 
   console.table(
-    Object.keys(errStat).map((item) => {
-      return {
-        'Name': item,
-        'Error Rate': (errStat[item] / data.length).toFixed(2),
-        'Accuracy': ((data.length - errStat[item]) / data.length).toFixed(2),
-        'Total': data.length,
-      }
-    }),
+    Object.keys(errStat)
+      .map((item) => {
+        return {
+          'Name': item,
+          'Error Rate': (errStat[item] / data.length).toFixed(2),
+          'Accuracy': ((data.length - errStat[item]) / data.length).toFixed(2),
+          'Total': data.length,
+        }
+      })
+      .sort((a, b) => {
+        return Number(b.Accuracy) - Number(a.Accuracy)
+      }),
   )
 
   test.todo('Todo')

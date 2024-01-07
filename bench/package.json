@@ -13,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cld": "^2.9.1",
+    "eld": "^1.0.0",
     "franc": "^6.1.0",
     "languagedetect": "^2.0.0",
     "p-limit": "^5.0.0",

@@ -11,7 +11,7 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 - Written in **TypeScript**
 - Supported **Node**, **Worker**, **Browser** and **Browser extension** runtime
 - Integrated language identification
-- More faster and accurate than [languagedetect](https://github.com/FGRibreau/node-language-detect) and [franc](https://github.com/wooorm/franc)
+- Significantly faster and accurate than [languagedetect](https://github.com/FGRibreau/node-language-detect) and [franc](https://github.com/wooorm/franc), superior to [eld](https://github.com/nitotm/efficient-language-detector-js).
 
 ## Usage
 
@@ -45,6 +45,18 @@ console.log(result) // 'en'
 **Do not forget** that download and place [`/fastText/fasttext.common.wasm`](./src/core/fastText.common.wasm) and [`/fastText/models/lid.176.ftz`](./src/models/language-identification/assets/lid.176.ftz) in public root directory. You can override the default paths if necessary.
 
 ## Benchmark
+
+Dataset [papluca/language-identification/test](https://huggingface.co/datasets/papluca/language-identification) accuracy test result in Node.js runtime:
+
+| Name             | Error Rate | Accuracy | Total |
+| ---------------- | ---------- | -------- | ----- |
+| _fastText_       | 0.02       | 0.98     | 10000 |
+| _cld_            | 0.04       | 0.96     | 10000 |
+| _eld_            | 0.06       | 0.94     | 10000 |
+| _languageDetect_ | 0.24       | 0.76     | 10000 |
+| _franc_          | 0.27       | 0.73     | 10000 |
+
+### How to?
 
 > [codesandbox/fasttext.wasm.js](https://codesandbox.io/p/github/yunsii/fasttext.wasm.js/master)
 
