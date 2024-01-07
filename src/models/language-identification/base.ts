@@ -76,6 +76,8 @@ export class BaseLanguageIdentificationModel {
    * This lib provide a normalize method to transform `WP code` to ISO 639-3 as much as possible.
    *
    * More detail refer to [languages scripts](https://github.com/yunsii/fasttext.wasm.js/tree/master/scripts/languages).
+   *
+   * Notice: ISO 639 provides two and three-character codes for representing names of languages. ISO 3166 provides two and three-character codes for representing names of countries.
    */
   normalizeIdentifyLang(lang: IdentifyLang): {
     /**

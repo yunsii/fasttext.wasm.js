@@ -31,7 +31,10 @@ const json = Object.keys(rawLanguageMap).reduce((previous, current) => {
 }, {})
 
 fs.writeJsonSync(
-  path.join(process.cwd(), 'src/tools/language-identification/languages.json'),
+  path.join(
+    process.cwd(),
+    'src/models/language-identification/assets/languages.json',
+  ),
   json,
   {
     spaces: 2,

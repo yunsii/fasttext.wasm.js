@@ -11,6 +11,7 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 - Written in **TypeScript**
 - Supported **Node**, **Worker**, **Browser** and **Browser extension** runtime
 - Integrated language identification
+- More faster and accurate than [languagedetect](https://github.com/FGRibreau/node-language-detect) and [franc](https://github.com/wooorm/franc)
 
 ## Usage
 
@@ -47,8 +48,14 @@ console.log(result) // 'en'
 
 > [codesandbox/language-detect-benchmark](https://codesandbox.io/p/sandbox/language-detect-benchmark-7fcwf4?file=/index.ts)
 
-- **10x Faster** and **very more accurate** than [languagedetect](https://github.com/FGRibreau/node-language-detect)
-- **~3x Faster** and **more accurate** than [franc](https://github.com/wooorm/franc)
+Or
+
+- Clone the repo
+- `pnpm i`
+- `pnpm run build`
+- `cd bench`
+- `pnpm run test` for accuracy test
+- `pnpm run bench` for benchmark test
 
 ## Related
 
