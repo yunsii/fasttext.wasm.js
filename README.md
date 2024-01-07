@@ -23,7 +23,7 @@ import { getLIDModel } from 'fasttext.wasm.js'
 const lidModel = await getLIDModel()
 await lidModel.load()
 const result = await lidModel.identify('Hello, world!')
-console.log(result) // 'en'
+console.log(result.alpha2) // 'en'
 ```
 
 In others environments, use like below:
@@ -39,7 +39,7 @@ const lidModel = await getLIDModel()
 // }
 await lidModel.load()
 const result = await lidModel.identify('Hello, world!')
-console.log(result) // 'en'
+console.log(result.alpha2) // 'en'
 ```
 
 **Do not forget** that download and place [`/fastText/fasttext.common.wasm`](./src/core/fastText.common.wasm) and [`/fastText/models/lid.176.ftz`](./src/models/language-identification/assets/lid.176.ftz) in public root directory. You can override the default paths if necessary.

@@ -3,18 +3,18 @@ import { useDebounceFn, useMount } from 'ahooks'
 
 import { getLIDModel } from '../../src/main/common'
 
-import type { IdentifyLangVector } from '../../src/main/common'
+import type { IdentifyLangResult } from '../../src/main/common'
 
 export default function Examples() {
   const [input, setInput] = useState('Hello, world.')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<IdentifyLangVector[] | null>(null)
+  const [result, setResult] = useState<IdentifyLangResult[] | null>(null)
 
   const handleDetect = useDebounceFn(async () => {
     setLoading(true)
     const lidModel = await getLIDModel()
     await lidModel.load()
-    const result = await lidModel.identifyVerbose(input)
+    const result = await lidModel.identify(input, 10)
     setResult(result)
     setLoading(false)
   })
@@ -35,14 +35,20 @@ export default function Examples() {
         rows={8}
       />
       <p className='px-2 py-2 font-semibold text-sm'>
-        Lang: {loading ? 'loading...' : !result ? 'noop' : result[0].lang}
+        Lang:{' '}
+        {loading
+          ? 'loading...'
+          : !result
+          ? 'noop'
+          : `${result[0].alpha3}/${result[0].alpha2}`}
       </p>
       {result && (
         <ul className='px-2 font-mono'>
           {result.map((item, index) => {
             return (
-              <li key={item.lang}>
-                <span>{index}.</span> {item.lang} - {item.possibility}
+              <li key={item.alpha3}>
+                <span>{index}.</span> {item.alpha3}/{item.alpha2} -{' '}
+                {item.possibility}
               </li>
             )
           })}
