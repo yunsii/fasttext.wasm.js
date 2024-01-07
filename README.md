@@ -34,8 +34,8 @@ import { getLIDModel } from 'fasttext.wasm.js/common'
 const lidModel = await getLIDModel()
 // Default paths:
 // {
-//   wasmPath: '/fastText/fasttext.common.wasm',
-//   modelPath: '/fastText/models/lid.176.ftz',
+//   wasmPath: '<globalThis.location.origin>/fastText/fasttext.common.wasm',
+//   modelPath: '<globalThis.location.origin>/fastText/models/lid.176.ftz',
 // }
 await lidModel.load()
 const result = await lidModel.identify('Hello, world!')
