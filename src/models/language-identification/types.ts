@@ -183,7 +183,16 @@ export interface IdentifyLangVector {
 }
 
 export interface IdentifyLangResult {
+  /**
+   * The three-letter 639-3 identifier.
+   *
+   * Attentions:
+   *
+   * - `eml` is retired in ISO 639-3
+   * - `bih` and `nah` are ISO 639-2 codes, but not standard ISO 639-3 codes
+   */
   alpha3: string
+  /** It will be `null` if `alpha3` equal `eml` or `nah` at least */
   alpha2: string | null
   refName: string
   possibility: number
