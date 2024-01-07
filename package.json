@@ -46,6 +46,7 @@
     "webassembly",
     "wasm",
     "node",
+    "worker",
     "browser",
     "browser-extension",
     "web-extension",
