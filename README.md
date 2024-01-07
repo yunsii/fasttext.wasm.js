@@ -46,9 +46,12 @@ console.log(result) // 'en'
 
 ## Benchmark
 
-> [codesandbox/language-detect-benchmark](https://codesandbox.io/p/sandbox/language-detect-benchmark-7fcwf4?file=/index.ts)
+> [codesandbox/fasttext.wasm.js](https://codesandbox.io/p/github/yunsii/fasttext.wasm.js/master)
 
-Or
+- Run `Bench Test` task for accuracy test
+- Run `Bench` task for benchmark test
+
+or
 
 - Clone the repo
 - `pnpm i`
