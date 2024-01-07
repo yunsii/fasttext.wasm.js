@@ -10,8 +10,8 @@ WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)
 
 - Written in **TypeScript**
 - Supported **Node**, **Worker**, **Browser** and **Browser extension** runtime
-- Integrated language identification
-- Significantly faster and accurate than [languagedetect](https://github.com/FGRibreau/node-language-detect) and [franc](https://github.com/wooorm/franc), superior to [eld](https://github.com/nitotm/efficient-language-detector-js).
+- Integrated language identification and normalized default result, supported [176 languages](./src/models/language-identification/assets/languages.json)
+- Significantly faster and accurate than [languagedetect](https://github.com/FGRibreau/node-language-detect) and [franc](https://github.com/wooorm/franc), superior to [eld](https://github.com/nitotm/efficient-language-detector-js) and [cld](https://github.com/dachev/node-cld).
 
 ## Usage
 
