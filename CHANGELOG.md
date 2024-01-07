@@ -1,5 +1,11 @@
 # fasttext.wasm.js
 
+## 0.0.1-next.14
+
+### Patch Changes
+
+- ✨ feat!: polish identify result
+
 ## 0.0.1-next.13
 
 ### Patch Changes
