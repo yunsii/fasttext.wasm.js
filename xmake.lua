@@ -23,7 +23,7 @@ add_ldflags("-sALLOW_MEMORY_GROWTH", "-sEXPORTED_FUNCTIONS=[_malloc,_free]",
     -- Except node and shell env
     "-sENVIRONMENT=web,webview,worker",
     -- ref: https://github.com/emscripten-core/emscripten/issues/20994#issuecomment-1875655395
-    "-sDYNAMIC_EXECUTION=0"
+    "-sDYNAMIC_EXECUTION=0", "-sEMBIND_AOT"
   )
 
 -- If make target ENVIRONMENT=node, it will `import { createRequire } from 'module'`,
