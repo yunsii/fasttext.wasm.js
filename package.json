@@ -1,7 +1,7 @@
 {
   "name": "fasttext.wasm.js",
   "description": "Node and Browser env supported WebAssembly version of fastText: Library for efficient text classification and representation learning.",
-  "version": "0.0.1-next.14",
+  "version": "1.0.0",
   "author": "Yuns <yuns.xie@qq.com>",
   "license": "MIT",
   "type": "module",
