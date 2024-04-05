@@ -92,6 +92,7 @@ or
 ### Requirements
 
 - [emsdk](https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended)
+  - [emcc@^3.1.53](https://github.com/emscripten-core/emscripten/pull/21168)
 - [xmake](https://xmake.io/#/guide/installation)
 
 Pay attention, add `source ./emsdk_env.sh` to shell profile to auto load emsdk env, and `export EMSDK_QUIET=1` can be used to suppress these messages.
