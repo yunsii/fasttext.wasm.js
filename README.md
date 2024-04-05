@@ -4,7 +4,7 @@ Node and Browser env supported WebAssembly version of fastText: Library for effi
 
 [![NPM version](https://img.shields.io/npm/v/fasttext.wasm.js?color=a1b858&label=)](https://www.npmjs.com/package/fasttext.wasm.js) [![Download monthly](https://img.shields.io/npm/dm/fasttext.wasm.js.svg)](https://www.npmjs.com/package/fasttext.wasm.js)
 
-WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/) with compressed `lid.176.ftz` model (~900KB) and a typescript wrapper. This project focuses on cross-platform, zero-dependency and out-of-the-box.
+WebAssembly version of [fastText](https://github.com/facebookresearch/fastText/)**(archived)** with compressed `lid.176.ftz` model (~900KB) and a typescript wrapper. This project focuses on cross-platform, zero-dependency and out-of-the-box.
 
 ## Features
 
