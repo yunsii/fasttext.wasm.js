@@ -190,7 +190,7 @@ export async function getFastTextClass(options: GetFastTextClassOptions) {
       callback: (() => void) | null | undefined,
     ) {
       const self = this
-      return new Promise((resolve, reject) => {
+      return new Promise<FastTextModel>((resolve, reject) => {
         self
           ._train(url, modelName, kwargs, callback)
           .then((model) => {
