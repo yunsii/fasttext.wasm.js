@@ -1,4 +1,8 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["languagedetect", "papluca", "unparse"]
+  "cSpell.words": ["languagedetect", "papluca", "unparse"],
+  "prettier.enable": false,
+  "eslint.options": {
+    "flags": ["unstable_ts_config"]
+  }
 }

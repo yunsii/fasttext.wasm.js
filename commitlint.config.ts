@@ -1,6 +1,8 @@
 import type { UserConfig } from '@commitlint/types'
 
 const config: UserConfig = {
+  // ref: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+  // ref: https://www.conventionalcommits.org/en/v1.0.0/#summary
   extends: ['@commitlint/config-conventional'],
   // [Question] how to extend and override config-conventional settings:
   // https://github.com/conventional-changelog/commitlint/issues/2232
@@ -9,26 +11,25 @@ const config: UserConfig = {
       2,
       'always',
       [
-        'build',
-        'chore',
-        'ci',
-        'docs',
         'feat',
         'fix',
-        'perf',
-        'refactor',
-        'revert',
+        'docs',
         'style',
+        'refactor',
+        'perf',
         'test',
-        // custom
-        'release',
+        'build',
+        'ci',
+        'chore',
+        'revert',
       ],
     ],
   },
+  // ref: https://commitlint.js.org/#/reference-prompt
   prompt: {
     questions: {
       type: {
-        description: "Select the type of change that you're committing",
+        description: 'Select the type of change that you\'re committing',
         enum: {
           feat: {
             description: 'A new feature',
@@ -80,19 +81,14 @@ const config: UserConfig = {
             emoji: '⚙️',
           },
           chore: {
-            description: "Other changes that don't modify src or test files",
+            description: 'Other changes that don\'t modify src or test files',
             title: 'Chores',
             emoji: '♻️',
           },
           revert: {
             description: 'Reverts a previous commit',
             title: 'Reverts',
-            emoji: '⏪️',
-          },
-          release: {
-            description: 'Release a package version',
-            title: 'Release',
-            emoji: '🔖',
+            emoji: '🗑',
           },
         },
       },

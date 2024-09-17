@@ -1,3 +1,8 @@
 packages:
   - .
   - bench
+
+catalog:
+  vitest: ^2.1.1
+  zx: ^8.1.6
+  papaparse: ^5.4.1

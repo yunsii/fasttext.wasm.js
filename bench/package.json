@@ -2,6 +2,9 @@
   "name": "bench",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "test": "vitest",
@@ -9,18 +12,15 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cld": "^2.9.1",
     "eld": "^1.0.0",
     "franc": "^6.1.0",
     "languagedetect": "^2.0.0",
     "p-limit": "^5.0.0",
-    "papaparse": "^5.4.1",
+    "papaparse": "catalog:",
     "pathe": "^1.1.1",
-    "vitest": "^1.1.3",
-    "zx": "^7.2.3"
+    "vitest": "catalog:",
+    "zx": "catalog:"
   }
 }
