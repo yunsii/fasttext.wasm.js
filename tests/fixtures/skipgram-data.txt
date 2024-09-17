@@ -1,0 +1,1 @@
+deploy scaling microservice docker kubernetes self paced version write jerome petazzoni support person instructor led workshop tutorials credit be due multiple contributor thank follow own own pace include information possible slide recommend having mentor help be comfortable spending time read kubernetes documentation look answer stackoverflow other outlet k8s intro.md nobody 
