@@ -1,11 +1,11 @@
-import { getFastTextClass } from '../../FastText'
+import type { GetFastTextModule } from '@/helpers/modules'
+import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
 
+import { getFastTextClass } from '../../FastText'
 import languages from './assets/languages.json'
 
-import type { IdentifyLangResult, RawIdentifyLang } from './types'
 import type { FastTextModel } from '../../FastTextModel'
-import type { InitializeFastTextModuleOptions } from '@/helpers/modules/types'
-import type { GetFastTextModule } from '@/helpers/modules'
+import type { IdentifyLangResult, RawIdentifyLang } from './types'
 
 const LANGUAGES_LIMIT = Object.keys(languages).length
 

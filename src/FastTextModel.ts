@@ -30,7 +30,7 @@ export class FastTextModel {
     }
   }
 
-  heapToFloat32 = (r: { ptr: any; size: any; buffer: any }) =>
+  heapToFloat32 = (r: { ptr: any, size: any, buffer: any }) =>
     new Float32Array(r.buffer, r.ptr, r.size)
 
   /**
@@ -188,7 +188,7 @@ export class FastTextModel {
    */
   getInputMatrix() {
     if (this.isQuant()) {
-      throw new Error("Can't get quantized Matrix")
+      throw new Error('Can\'t get quantized Matrix')
     }
     return this.ft.getInputMatrix()
   }
@@ -208,7 +208,7 @@ export class FastTextModel {
    */
   getOutputMatrix() {
     if (this.isQuant()) {
-      throw new Error("Can't get quantized Matrix")
+      throw new Error('Can\'t get quantized Matrix')
     }
     return this.ft.getOutputMatrix()
   }

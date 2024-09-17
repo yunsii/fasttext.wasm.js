@@ -1,11 +1,11 @@
-import { describe, expect, test } from 'vitest'
-
-import 'cross-fetch/polyfill'
+import { describe, expect } from 'vitest'
 
 import { getLIDModel } from '../src/main/node'
 
+import 'cross-fetch/polyfill'
+
 // ref: https://github.dev/facebookresearch/fastText/blob/166ce2c71a497ff81cb62ec151be5b569e1f1be6/webassembly/doc/examples/predict.html
-test('language predict', async () => {
+it('language predict', async () => {
   const lidModel = await getLIDModel()
   const fastTextModel = await lidModel.load()
 
@@ -33,7 +33,7 @@ describe('language detect', async () => {
   const lidModel = await getLIDModel()
   await lidModel.load()
   Object.keys(tests).forEach(async (item, index) => {
-    test.concurrent(`language detect ${index}`, async () => {
+    it.concurrent(`language detect ${index}`, async () => {
       const lang = await lidModel.identify(item)
       expect(lang.alpha2).equals(tests[item as keyof typeof tests])
     })

@@ -1,16 +1,16 @@
-import { bench, describe } from 'vitest'
-import LanguageDetect from 'languagedetect'
-import { franc } from 'franc'
-import { eld } from 'eld'
 import cld from 'cld'
+import { eld } from 'eld'
+import { franc } from 'franc'
+import LanguageDetect from 'languagedetect'
+import { bench, describe } from 'vitest'
 
+// eslint-disable-next-line antfu/no-import-dist
 import { getLIDModel } from '../../dist/main/node'
-
 import { getPaplucaLanguageIdentificationTestData } from './data'
 
 describe('papluca/language-identification/test', async () => {
-  const paplucaLanguageIdentificationTestData =
-    getPaplucaLanguageIdentificationTestData().slice(0, 500)
+  const paplucaLanguageIdentificationTestData
+    = getPaplucaLanguageIdentificationTestData().slice(0, 500)
   const lidModel = await getLIDModel()
   const lngDetector = new LanguageDetect()
 

@@ -1,5 +1,5 @@
-import pathe from 'pathe'
 import papaparse from 'papaparse'
+import pathe from 'pathe'
 import { fs } from 'zx'
 
 export function getPaplucaLanguageIdentificationTestData() {

@@ -1,5 +1,4 @@
 import { getFastTextModule } from '../../helpers/modules/node'
-
 import { BaseLanguageIdentificationModel } from './base'
 
 import type { BaseLanguageIdentificationModelOptions } from './base'

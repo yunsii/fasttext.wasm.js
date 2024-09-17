@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import { useDebounceFn, useMount } from 'ahooks'
+import React, { useState } from 'react'
 
 import { getLIDModel } from '../../src/main/common'
 
@@ -35,19 +35,30 @@ export default function Examples() {
         rows={8}
       />
       <p className='px-2 py-2 font-semibold text-sm'>
-        Lang:{' '}
+        Lang:
+        {' '}
         {loading
           ? 'loading...'
           : !result
-          ? 'noop'
-          : `${result[0].alpha3}/${result[0].alpha2}`}
+              ? 'noop'
+              : `${result[0].alpha3}/${result[0].alpha2}`}
       </p>
       {result && (
         <ul className='px-2 font-mono'>
           {result.map((item, index) => {
             return (
               <li key={item.alpha3}>
-                <span>{index}.</span> {item.alpha3}/{item.alpha2} -{' '}
+                <span>
+                  {index}
+                  .
+                </span>
+                {' '}
+                {item.alpha3}
+                /
+                {item.alpha2}
+                {' '}
+                -
+                {' '}
                 {item.possibility}
               </li>
             )

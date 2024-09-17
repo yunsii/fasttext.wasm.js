@@ -5,12 +5,12 @@ import { mergeConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
-import baseConfig from './vite.base.config'
-
 import type { UserConfig } from 'vite'
 
-const { peerDependencies = {}, dependencies = {} } =
-  fse.readJsonSync('./package.json')
+import baseConfig from './vite.base.config'
+
+const { peerDependencies = {}, dependencies = {} }
+  = fse.readJsonSync('./package.json')
 
 const externalPackages = Array.from(
   new Set([...Object.keys(peerDependencies), ...Object.keys(dependencies)]),

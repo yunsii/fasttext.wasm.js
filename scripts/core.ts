@@ -15,8 +15,8 @@ function getCorePath(...paths: string[]) {
 
 ;[commonDtsPath, nodeDtsPath].forEach((item) => {
   if (
-    fs.existsSync(item) &&
-    fs.readFileSync(item, 'utf-8') === fs.readFileSync(dtsPath, 'utf-8')
+    fs.existsSync(item)
+    && fs.readFileSync(item, 'utf-8') === fs.readFileSync(dtsPath, 'utf-8')
   ) {
     return
   }

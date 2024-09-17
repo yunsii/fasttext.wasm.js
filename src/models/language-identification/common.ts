@@ -1,10 +1,9 @@
-import { getFastTextModule } from '../../helpers/modules/common'
+import { commonAssetsDir, commonAssetsModelsDir } from '@/constants'
 
+import { getFastTextModule } from '../../helpers/modules/common'
 import { BaseLanguageIdentificationModel } from './base'
 
 import type { BaseLanguageIdentificationModelOptions } from './base'
-
-import { commonAssetsDir, commonAssetsModelsDir } from '@/constants'
 
 export interface LanguageIdentificationModelOptions
   extends Omit<BaseLanguageIdentificationModelOptions, 'getFastTextModule'> {}
@@ -12,8 +11,8 @@ export interface LanguageIdentificationModelOptions
 export class LanguageIdentificationModel extends BaseLanguageIdentificationModel {
   constructor(options: LanguageIdentificationModelOptions = {}) {
     // Detect origin, in Next.js without origin prefix, it will prefix with <origin>/_next/static/chunks/<my-path>
-    const origin =
-      typeof globalThis.location !== 'undefined'
+    const origin
+      = typeof globalThis.location !== 'undefined'
         ? globalThis.location.origin
         : ''
 

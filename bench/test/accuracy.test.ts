@@ -1,17 +1,15 @@
-/* eslint-disable no-console */
-import { describe, test } from 'vitest'
-import LanguageDetect from 'languagedetect'
+import cld from 'cld'
+import { eld } from 'eld'
 import { franc } from 'franc'
+import LanguageDetect from 'languagedetect'
 import pLimit from 'p-limit'
 import papaparse from 'papaparse'
-import { fs } from 'zx'
 import path from 'pathe'
-import { eld } from 'eld'
-import cld from 'cld'
+import { describe, it } from 'vitest'
+import { fs } from 'zx'
 
-import { getLIDModel } from '../../src/main/node'
 import { getIso639_3DataBy639_1Id } from '../../scripts/languages/helpers'
-
+import { getLIDModel } from '../../src/main/node'
 import { getPaplucaLanguageIdentificationTestData } from './data'
 
 const data = getPaplucaLanguageIdentificationTestData()
@@ -90,6 +88,7 @@ describe('basic', async () => {
     })
   })
 
+  // eslint-disable-next-line no-console
   console.table(
     Object.keys(errStat)
       .map((item) => {
@@ -105,5 +104,5 @@ describe('basic', async () => {
       }),
   )
 
-  test.todo('Todo')
+  it.todo('todo')
 })

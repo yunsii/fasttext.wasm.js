@@ -177,7 +177,6 @@ const langs = [
   'vo',
   'wa',
   'war',
-  'wuu',
   'xal',
   'xmf',
   'yi',
@@ -192,7 +191,7 @@ function normalizeLang(lang) {
 
 function find(name) {
   return Array.from(document.querySelectorAll('td')).find((item) => {
-    return normalizeLang(item.innerText) === name
+    return normalizeLang(item.textContent) === name
   })
 }
 
@@ -201,7 +200,7 @@ const result = langs.reduce((prev, current) => {
   return {
     ...prev,
     [current]: target
-      ? normalizeLang(target.previousSibling.previousSibling.innerText)
+      ? normalizeLang(target.previousSibling.previousSibling.textContent)
       : null,
   }
 }, {})

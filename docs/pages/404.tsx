@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Component404 = () => {
+function Component404() {
   const navigate = useNavigate()
 
   return (
@@ -9,11 +9,11 @@ const Component404 = () => {
       <h1>404</h1>
       <p>Page not found</p>
       <button
+        type='button'
         onClick={() =>
           navigate('/', {
             replace: true,
-          })
-        }
+          })}
       >
         Home
       </button>

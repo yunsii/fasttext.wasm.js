@@ -1,5 +1,5 @@
-import { fixRefNameMap, rawLanguageMap, refNameMap } from './raw-data'
 import { getIsoCsv } from './helpers'
+import { fixRefNameMap, rawLanguageMap, refNameMap } from './raw-data'
 
 const isoCsv = getIsoCsv()
 

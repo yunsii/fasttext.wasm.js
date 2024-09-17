@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 
-import { fs, path } from 'zx'
 import Papa from 'papaparse'
+import { fs, path } from 'zx'
 
 import data from './iso-639-3.json'
 
@@ -59,8 +59,8 @@ export function getIsoCsv() {
       },
       transform(value, field) {
         if (
-          typeof field === 'string' &&
-          ['Part2B', 'Part2T', 'Part1', 'Comment'].includes(field)
+          typeof field === 'string'
+          && ['Part2B', 'Part2T', 'Part1', 'Comment'].includes(field)
         ) {
           return value || null
         }

@@ -1,11 +1,11 @@
-import path from 'path'
+import path from 'node:path'
 
 import { mergeConfig } from 'vite'
 import pages, { DefaultPageStrategy } from 'vite-plugin-react-pages'
 
-import baseConfig from './vite.base.config'
-
 import type { UserConfig } from 'vite'
+
+import baseConfig from './vite.base.config'
 
 // https://vitejs.dev/config/
 export default mergeConfig(baseConfig, {

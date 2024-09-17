@@ -1,16 +1,17 @@
+/* eslint-disable ts/no-this-alias */
+import { modelFileInWasmFs, trainFileInWasmFs } from './constants'
+import { FastTextModel } from './FastTextModel'
 // Based on https://github.dev/facebookresearch/fastText/blob/166ce2c71a497ff81cb62ec151be5b569e1f1be6/webassembly/fasttext.js
 import { fetchFile } from './helpers/modules'
-import { FastTextModel } from './FastTextModel'
-import { modelFileInWasmFs, trainFileInWasmFs } from './constants'
 
-import type { InternalGetFastTextModule } from './helpers/modules'
 import type { FastTextCoreConstructor, FastTextModule } from './core/fastText'
+import type { InternalGetFastTextModule } from './helpers/modules'
 
 export interface GetFastTextClassOptions {
   getFastTextModule: InternalGetFastTextModule
 }
 
-export const getFastTextClass = async (options: GetFastTextClassOptions) => {
+export async function getFastTextClass(options: GetFastTextClassOptions) {
   const { getFastTextModule } = options
 
   const fastTextModule = await getFastTextModule()
@@ -51,7 +52,7 @@ export const getFastTextClass = async (options: GetFastTextClassOptions) => {
       const fetchFunc = globalThis.fetch || fetch
       const fastTextNative = this.ft
 
-      return new Promise((resolve, reject) => {
+      return new Promise<FastTextModel>((resolve, reject) => {
         fetchFunc(url)
           .then((response) => {
             return response.arrayBuffer()
@@ -102,8 +103,8 @@ export const getFastTextClass = async (options: GetFastTextClassOptions) => {
               }
             })
             args.model = fastTextModule.ModelName[modelName]
-            args.loss =
-              'loss' in kwargs ? fastTextModule.LossName[kwargs.loss] : 'hs'
+            args.loss
+              = 'loss' in kwargs ? fastTextModule.LossName[kwargs.loss] : 'hs'
             args.thread = 1
             args.input = trainFileInWasmFs
 
@@ -164,14 +165,6 @@ export const getFastTextClass = async (options: GetFastTextClassOptions) => {
      *
      * Downloads the input file from the specified url, trains an unsupervised
      * model and returns a `FastTextModel` object.
-     *
-     * @param {function}   callback
-     *     train callback function
-     *     `callback` function is called regularly from the train loop:
-     *     `callback(progress, loss, wordsPerSec, learningRate, eta)`
-     *
-     * @return {Promise}   promise object that resolves to a `FastTextModel`
-     *
      */
     trainUnsupervised(
       /**

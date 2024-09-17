@@ -13,10 +13,10 @@ const isoCsv = getIsoCsv()
 const json = Object.keys(rawLanguageMap).reduce((previous, current) => {
   const targetIsoRecord = isoCsv.data.find((item) => {
     return (
-      item.Ref_Name &&
-      (item.Ref_Name === fixRefNameMap[current] ||
-        item.Ref_Name === rawLanguageMap[current] ||
-        item.Ref_Name === refNameMap[current])
+      item.Ref_Name
+      && (item.Ref_Name === fixRefNameMap[current]
+        || item.Ref_Name === rawLanguageMap[current]
+        || item.Ref_Name === refNameMap[current])
     )
   })
 
